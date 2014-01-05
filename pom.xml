@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.synaptec.apps</groupId>
+  <artifactId>ishop-model</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>ishop-model</name>
+  <url>http://maven.apache.org</url>
+
+  
+  <properties>
+        <!-- Explicitly declaring the source encoding eliminates the following 
+            message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+            resources, i.e. build is platform dependent! -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Timestamp format for the maven.build.timestamp property -->
+        <!-- You can reference property in pom.xml or filtered resources 
+            (must enable third-party plugin if using Maven < 2.1) -->
+        <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
+        <!-- Specify the JBoss AS directory to be the JBOSS_HOME environment 
+            variable -->
+        <jboss.home>${env.JBOSS_HOME}</jboss.home>
+        <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want 
+            to import. -->
+        <!-- <jboss.bom.version>1.0.4.Final-redhat-9</jboss.bom.version> -->
+        <!-- Alternatively, comment out the above line, and un-comment the 
+            line below to use version 1.0.4.Final-redhat-9 which is a release certified 
+            to work with JBoss EAP 6.1.1. It requires you have access to the JBoss EAP 6.1.1 
+            maven repository. -->
+        <jboss.bom.version>1.0.7.Final</jboss.bom.version>
+        <buildhelper.plugin.version>1.7</buildhelper.plugin.version>
+      
+        <jackson.version>1.9.9</jackson.version>
+        <!-- Hibernate Search version -->
+        <hibernate.search.version>4.4.0.Final</hibernate.search.version>
+        <arquillian.version>1.1.2.Final</arquillian.version>
+    </properties>
+
+
+ <dependencyManagement>
+        <dependencies>
+             <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+             <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+                <version>${jboss.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+        </dependencies>
+ </dependencyManagement>
+  <dependencies>
+      <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>${hibernate.search.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-engine</artifactId>
+            <version>${hibernate.search.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-analyzers</artifactId>
+            <version>${hibernate.search.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+          <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
